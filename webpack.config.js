@@ -51,7 +51,8 @@ const productionConfig = merge([
     {
         output: {
             path: PATHS.build,
-            filename: '[name].[chunkhash:4].js'
+            filename: '[name].[chunkhash:4].js',
+            // chunkFilename: 'chunk.[id].js'
         }
     },
 

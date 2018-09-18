@@ -1,4 +1,4 @@
-// import 'purecss';
+import 'purecss';
 import 'react';
 import 'react-dom';
 import './main.css';
