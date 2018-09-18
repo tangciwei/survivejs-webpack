@@ -2,16 +2,17 @@ const merge = require('webpack-merge');
 const glob = require('glob');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const parts = require('./webpack.parts');
-
-const AggressiveSplittingPlugin = require('webpack').optimize.AggressiveMergingPlugin;
+// 分割
+const AggressiveSplittingPlugin = webpack.optimize.AggressiveSplittingPlugin;
 
 const PATHS = {
     app: path.join(__dirname, 'src'),
     build: path.join(__dirname, 'build')
 };
 
-// ---------------------------
+// ---------------------------公用
 const commonConfig = merge([
     {
         plugins: [
@@ -26,8 +27,10 @@ const commonConfig = merge([
     })
 
 ]);
-// ---------------------------
+// ---------------------------生产
 const productionConfig = merge([
+    parts.clean(PATHS.build),
+
     parts.extractCSS({
         // use: 'css-loader'
         use: ['css-loader', parts.autoprefix()]
@@ -100,9 +103,11 @@ const productionConfig = merge([
     //         })
     //     ]
     // }
+    // 增加版本信息
+    parts.attachRevision()
 
 ]);
-// ---------------------------
+// ---------------------------开发
 const developmentConfig = merge([
     parts.devServer({
         // Customize host/port here if needed
