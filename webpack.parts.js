@@ -104,7 +104,7 @@ exports.loadImages = ({
         ]
     }
 });
-
+// es6
 exports.loadJavaScript = ({include, exclude} = {}) => ({
     module: {
         rules: [
@@ -116,4 +116,8 @@ exports.loadJavaScript = ({include, exclude} = {}) => ({
             }
         ]
     }
+});
+
+exports.generateSourceMaps = ({type}) => ({
+    devtool: type
 });

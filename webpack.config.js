@@ -40,7 +40,12 @@ const productionConfig = merge([
             limit: 15000,
             name: '[name].[ext]'
         }
-    })
+    }),
+    // 产生sorcemap
+    // parts.generateSourceMaps({
+    //     type: 'source-map'
+    // })
+
 ]);
 // ---------------------------
 const developmentConfig = merge([
