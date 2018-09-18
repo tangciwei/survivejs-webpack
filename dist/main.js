@@ -32,8 +32,8 @@
                     return e[t];
                 }.bind(null, o));
             }
-        }
 
+        }
         return r;
     }, n.n = function (e) {
         var t = e && e.__esModule ? function () {
@@ -44,9 +44,9 @@
         return n.d(t, 'a', t), t;
     }, n.o = function (e, t) {
         return Object.prototype.hasOwnProperty.call(e, t);
-    }, n.p = '', n(n.s = 0);
-}([function (e, t, n) {
-    'use strict';n.r(t);document.body.appendChild(((e = 'Hello world') => {
+    }, n.p = '', n(n.s = 2);
+}([function (e, t, n) {},, function (e, t, n) {
+    'use strict';n.r(t);n(0);document.body.appendChild(((e = 'Hello world') => {
         const t = document.createElement('div');
         return t.innerHTML = e, t;
     })());
