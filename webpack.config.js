@@ -15,13 +15,19 @@ const PATHS = {
 // ---------------------------公用
 const commonConfig = merge([
     {
-        plugins: [
-            new HtmlWebpackPlugin({
-                title: 'Webpack demo'
-            })
-
-        ]
+        output: {
+            // Needed for code splitting to work in nested paths
+            publicPath: '/'
+        }
     },
+    // {
+    //     plugins: [
+    //         new HtmlWebpackPlugin({
+    //             title: 'Webpack demo'
+    //         })
+
+    //     ]
+    // },
     parts.loadJavaScript({
         include: PATHS.app
     })
@@ -125,14 +131,40 @@ const developmentConfig = merge([
 //     mode: 'development'
 // }));
 module.exports = mode => {
-    if (mode === 'production') {
-        return merge(commonConfig, productionConfig, {
-            mode
-        });
-    }
+    // if (mode === 'production') {
+    //     return merge(commonConfig, productionConfig, {
+    //         mode
+    //     });
+    // }
 
-    return merge(commonConfig, developmentConfig, {
-        mode
-    });
+    // return merge(commonConfig, developmentConfig, {
+    //     mode
+    // });
+
+    const pages = [
+        parts.page({
+            title: 'Webpack demo',
+            entry: {
+                app: PATHS.app
+            }
+        }),
+        parts.page({
+            title: 'Another demo',
+            path: 'another',
+            entry: {
+                another: path.join(PATHS.app, 'another.js')
+            }
+        })
+    ];
+    const config = mode === 'production' ? productionConfig : developmentConfig;
+    // 返回数组
+    return pages.map(page => merge(
+        commonConfig,
+        config,
+        page,
+        {
+            mode
+        }
+    ));
 
 };

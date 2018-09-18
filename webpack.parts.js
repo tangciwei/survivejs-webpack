@@ -1,6 +1,7 @@
 const PurifyCSSPlugin = require('purifycss-webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
@@ -133,6 +134,26 @@ exports.attachRevision = () => ({
     plugins: [
         new webpack.BannerPlugin({
             banner: new GitRevisionPlugin().version()
+        })
+    ]
+});
+// 多页
+exports.page = ({
+        path = '',
+        template = require.resolve(
+            'html-webpack-plugin/default_index.ejs'
+        ),
+        title,
+        entry
+    } = {}) => ({
+    // 入口
+    entry,
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: `${path && path + '/'}index.html`,
+            template,
+            title
         })
     ]
 });
