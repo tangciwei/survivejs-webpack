@@ -9,13 +9,20 @@ const PATHS = {
 };
 
 // ---------------------------
-const commonConfig = merge([{
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Webpack demo'
-        })
-    ]
-}]);
+const commonConfig = merge([
+    {
+        plugins: [
+            new HtmlWebpackPlugin({
+                title: 'Webpack demo'
+            })
+
+        ]
+    },
+    parts.loadJavaScript({
+        include: PATHS.app
+    })
+
+]);
 // ---------------------------
 const productionConfig = merge([
     parts.extractCSS({
