@@ -51,7 +51,9 @@ exports.extractCSS = ({
     }) => {
     // Output extracted CSS to a file
     const plugin = new MiniCssExtractPlugin({
-        filename: '[name].css'
+        // filename: '[name].css'
+        filename: '[name].[contenthash:4].css'
+
     });
 
     return {

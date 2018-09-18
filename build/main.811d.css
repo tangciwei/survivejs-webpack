@@ -1,0 +1,11 @@
+body {
+  background: cornsilk;
+  background-image: url(log.422b.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.pure-button {
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+}
