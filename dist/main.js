@@ -44,10 +44,10 @@
         return n.d(t, 'a', t), t;
     }, n.o = function (e, t) {
         return Object.prototype.hasOwnProperty.call(e, t);
-    }, n.p = '', n(n.s = 2);
-}([function (e, t, n) {},, function (e, t, n) {
-    'use strict';n.r(t);n(0);document.body.appendChild(((e = 'Hello world') => {
+    }, n.p = '', n(n.s = 4);
+}([function (e, t, n) {},, function (e, t, n) {},, function (e, t, n) {
+    'use strict';n.r(t);n(0), n(2);document.body.appendChild(((e = 'Hello world') => {
         const t = document.createElement('div');
-        return t.innerHTML = e, t;
+        return t.className = 'pure-button', t.innerHTML = e, t;
     })());
 }]);
