@@ -146,25 +146,35 @@ module.exports = mode => {
             title: 'Webpack demo',
             entry: {
                 app: PATHS.app
-            }
+            },
+            chunks: ['app', 'manifest', 'vendor']
+
         }),
         parts.page({
             title: 'Another demo',
             path: 'another',
             entry: {
                 another: path.join(PATHS.app, 'another.js')
-            }
+            },
+            // 疑问，没用到，页面也引用了
+            chunks: ['another','vendor','manifest']
+            // chunks: ['another', 'manifest', 'vendor']
+
         })
     ];
     const config = mode === 'production' ? productionConfig : developmentConfig;
     // 返回数组
-    return pages.map(page => merge(
-        commonConfig,
-        config,
-        page,
-        {
-            mode
-        }
-    ));
+    // return pages.map(page => merge(
+    //     commonConfig,
+    //     config,
+    //     page,
+    //     {
+    //         mode
+    //     }
+    // ));
+
+    return merge([commonConfig, config, {
+        mode
+    }].concat(pages));
 
 };
