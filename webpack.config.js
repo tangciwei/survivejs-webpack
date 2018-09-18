@@ -8,6 +8,7 @@ const PATHS = {
     app: path.join(__dirname, 'src')
 };
 
+// ---------------------------
 const commonConfig = merge([{
     plugins: [
         new HtmlWebpackPlugin({
@@ -15,7 +16,7 @@ const commonConfig = merge([{
         })
     ]
 }]);
-
+// ---------------------------
 const productionConfig = merge([
     parts.extractCSS({
         // use: 'css-loader'
@@ -26,16 +27,24 @@ const productionConfig = merge([
         paths: glob.sync(`${PATHS.app}/**/*.js`, {
             nodir: true
         })
+    }),
+    parts.loadImages({
+        options: {
+            limit: 15000,
+            name: '[name].[ext]'
+        }
     })
 ]);
-
+// ---------------------------
 const developmentConfig = merge([
     parts.devServer({
         // Customize host/port here if needed
         host: process.env.HOST,
         port: process.env.PORT
     }),
-    parts.loadCSS()
+    parts.loadCSS(),
+    parts.loadImages()
+
 ]);
 
 // 输出的是一个函数；
