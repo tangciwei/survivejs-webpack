@@ -11,7 +11,7 @@ exports.devServer = ({host, port} = {}) => ({
         overlay: true
     }
 });
-
+// css嵌入到页面
 exports.loadCSS = ({include, exclude} = {}) => ({
     module: {
         rules: [
@@ -43,6 +43,7 @@ exports.loadCSS = ({include, exclude} = {}) => ({
         ]
     }
 });
+// 提取css
 exports.extractCSS = ({
         include,
         exclude,
@@ -70,8 +71,16 @@ exports.extractCSS = ({
         plugins: [plugin]
     };
 };
+// 精简css
 exports.purifyCSS = ({paths}) => ({
     plugins: [new PurifyCSSPlugin({
         paths
     })]
+});
+// 自动补全
+exports.autoprefix = () => ({
+    loader: 'postcss-loader',
+    options: {
+        plugins: () => [require('autoprefixer')()]
+    }
 });
